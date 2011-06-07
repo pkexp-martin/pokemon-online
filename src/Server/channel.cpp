@@ -1,5 +1,9 @@
-#include "../Utilities/otherwidgets.h"
 #include "channel.h"
+#if !defined(PO_NO_GUI)
+#include "../Utilities/otherwidgets.h"
+#else
+#include "../Utilities/nickvalidator.h"
+#endif
 
 QNickValidator *Channel::checker = NULL;
 

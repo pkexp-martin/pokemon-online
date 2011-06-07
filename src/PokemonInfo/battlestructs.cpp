@@ -1,7 +1,11 @@
 #include "battlestructs.h"
 #include "networkstructs.h"
 #include "movesetchecker.h"
+#if !defined(PO_NO_GUI)
 #include "../Utilities/otherwidgets.h"
+#else
+#include "../Utilities/nickvalidator.h"
+#endif
 
 QString ChallengeInfo::clauseText[] =
 {

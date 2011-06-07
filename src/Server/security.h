@@ -3,7 +3,11 @@
 
 #include <QtCore>
 
+#if !defined(PO_NO_GUI)
 #include "../Utilities/otherwidgets.h"
+#else
+#include "../Utilities/nickvalidator.h"
+#endif
 #include "memoryholder.h"
 
 class WaitingObject;

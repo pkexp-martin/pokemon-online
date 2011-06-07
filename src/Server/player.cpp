@@ -885,7 +885,9 @@ void Player::ratingLoaded()
 
 void Player::assignNewColor(const QColor &c)
 {
+#if !defined(PO_NO_GUI)
     if (c.lightness() <= 140 && c.green() <= 180)
+#endif
         color() = c;
 }
 

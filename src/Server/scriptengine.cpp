@@ -1704,6 +1704,7 @@ int ScriptEngine::hiddenPowerType(int gen, quint8 hpdv, quint8 attdv, quint8 def
     return HiddenPowerInfo::Type(gen, hpdv, attdv, defdv, spddv, sattdv, sdefdv);
 }
 
+#if !defined(PO_NO_GUI)
 ScriptWindow::ScriptWindow()
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
@@ -1745,6 +1746,7 @@ void ScriptWindow::okPressed()
 
     close();
 }
+#endif
 
 QScriptValue ScriptEngine::getScript()
 {

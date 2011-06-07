@@ -1,7 +1,9 @@
 #ifndef TIERTREE_H
 #define TIERTREE_H
 
+#if !defined(PO_NO_GUI)
 #include <QtCore>
+#endif
 #include "tiernode.h"
 
 class Tier;
@@ -46,7 +48,9 @@ struct TierCategory : public TierNode
 class TierTree
 {
     friend class TierMachine;
+#if !defined(PO_NO_GUI)
     friend class TierWindow;
+#endif
 public:
     void loadFromXml(const QString &xmldata, TierMachine *boss);
     QString toXml() const;
@@ -63,7 +67,9 @@ public:
     TierNode *getNode(const QString &name);
     TierCategory *getParentCategory(TierNode *c);
 
+#if !defined(PO_NO_GUI)
     void buildTreeGui(QTreeWidget *tree);
+#endif
     /* Reorder tiers / categories with the right display order */
     void reorder();
 private:

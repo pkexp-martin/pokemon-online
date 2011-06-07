@@ -1,8 +1,10 @@
 #ifndef ANTIDOS_H
 #define ANTIDOS_H
 
-#include <QtGui>
 #include <ctime>
+#include <QtCore>
+#if !defined(PO_NO_GUI)
+#include <QtGui>
 
 class AntiDosWindow : public QWidget
 {
@@ -15,12 +17,15 @@ private:
     QSpinBox *max_people_per_ip, *max_commands_per_user, *max_kb_per_user, *max_login_per_ip, *ban_after_x_kicks;
     QCheckBox *aDosOn;
 };
+#endif
 
 /* A class to detect flood and ban DoSing IPs */
 class AntiDos : public QObject
 {
     Q_OBJECT
+#if !defined(PO_NO_GUI)
     friend class AntiDosWindow;
+#endif
     friend class ScriptEngine;
 public:
     AntiDos();

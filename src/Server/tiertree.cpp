@@ -1,5 +1,7 @@
 #include <QtXml>
+#if !defined(PO_NO_GUI)
 #include <QtGui>
+#endif
 #include <algorithm>
 #include "tiertree.h"
 #include "tier.h"
@@ -167,6 +169,7 @@ void TierCategory::removeChild(TierNode *t)
     subNodes.removeOne(t);
 }
 
+#if !defined(PO_NO_GUI)
 void TierCategory::buildRootGui(QTreeWidget *tree)
 {
     foreach(TierNode *c, subNodes) {
@@ -183,6 +186,7 @@ QTreeWidgetItem *TierCategory::buildGui()  const{
 
     return it;
 }
+#endif
 
 QDomElement & TierCategory::toXml(QDomElement &xml) const {
     if (!root) {
@@ -324,12 +328,14 @@ TierNode *TierTree::getNode(const QString &name) {
     return root.getNode(name);
 }
 
+#if !defined(PO_NO_GUI)
 void TierTree::buildTreeGui(QTreeWidget *tree)
 {
     tree->clear();
 
     root.buildRootGui(tree);
 }
+#endif
 
 QList<TierCategory *> TierTree::gatherCategories()
 {

@@ -2,7 +2,9 @@
 #define TIER_H
 
 #include <QtCore>
+#if !defined(PO_NO_GUI)
 #include <QtGui>
+#endif
 #include "sql.h"
 #include "memoryholder.h"
 #include "tiernode.h"
@@ -67,9 +69,11 @@ struct MemberRating
 
 class Tier : public TierNode
 {
+#if !defined(PO_NO_GUI)
+    friend class TierWindow;
+#endif
     friend class TierMachine;
     friend class ScriptEngine;
-    friend class TierWindow;
 public:
     void changeName(const QString &name);
     void changeId(int newid);

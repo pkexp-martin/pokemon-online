@@ -1,5 +1,6 @@
 #include "antidos.h"
 
+#if !defined(PO_NO_GUI)
 AntiDosWindow::AntiDosWindow()
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
@@ -77,6 +78,7 @@ void AntiDosWindow::apply()
 
     close();
 }
+#endif
 
 AntiDos::AntiDos() {
     // Clears history every day, to save RAM.

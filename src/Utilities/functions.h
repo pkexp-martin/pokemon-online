@@ -2,10 +2,16 @@
 #define FUNCTIONS_H
 
 #include <QtCore>
-#include <QColor>
 #include <ctime>
 
+#if defined(PO_NO_GUI)
+#include "networkcolor.h"
+#else
+#include <QColor>
+
 class QWidget;
+#endif
+
 
 /* Changes a string so all what is inside is converted to html.
 
@@ -106,8 +112,10 @@ QByteArray md5_hash(const QByteArray &toHash);
 
 void createIntMapper(QObject *src, const char *signal, QObject *dest, const char *slot, int id);
 
+#if !defined(PO_NO_GUI)
 void writeSettings(QWidget *w);
 void loadSettings(QWidget *w, const QSize &defaultSize = QSize());
+#endif
 
 QString slug(const QString &s);
 #endif // FUNCTIONS_H

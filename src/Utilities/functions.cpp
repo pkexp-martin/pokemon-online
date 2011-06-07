@@ -1,6 +1,8 @@
 #include "functions.h"
 
+#if !defined(PO_NO_GUI)
 #include <QtGui>
+#endif
 
 QString escapeHtml(const QString & toConvert)
 {
@@ -41,6 +43,7 @@ QString slug(const QString &s)
     return ret;
 }
 
+#if !defined(PO_NO_GUI)
 void writeSettings(QWidget *w)
 {
     QSettings settings;
@@ -86,3 +89,4 @@ void cropImage(QImage &p)
         memcpy(p.scanLine(k), buffer, p.bytesPerLine());
     }
 }
+#endif

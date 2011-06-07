@@ -401,6 +401,7 @@ void PokePersonal::reset()
     }
 }
 
+#if !defined(PO_NO_GUI)
 PokeGraphics::PokeGraphics()
     : m_num(Pokemon::NoPoke), m_uptodate(false)
 {
@@ -476,6 +477,7 @@ int PokeGraphics::gen() const
 {
     return m_gen;
 }
+#endif
 
 PokeTeam::PokeTeam()
 {
@@ -487,14 +489,18 @@ void PokeTeam::setNum(Pokemon::uniqueId num)
 {
     PokeGeneral::num() = num;
     PokePersonal::num() = num;
+#if !defined(PO_NO_GUI)
     PokeGraphics::setNum(num);
+#endif
 }
 
 void PokeTeam::setGen(int gen)
 {
     PokeGeneral::gen() = gen;
     PokePersonal::gen() = gen;
+#if !defined(PO_NO_GUI)
     PokeGraphics::setGen(gen);
+#endif
 }
 
 void PokeTeam::runCheck()
@@ -534,8 +540,10 @@ void PokeTeam::load()
     }
     ability() = abilities().ab(0);
     nickname() = PokemonInfo::Name(num());
+#if !defined(PO_NO_GUI)
     PokeGraphics::load(gender(), false);
     PokeGraphics::loadIcon(num());
+#endif
 }
 
 void PokeTeam::loadQuietly()
@@ -543,10 +551,13 @@ void PokeTeam::loadQuietly()
     PokeGeneral::load();
     /*set the default gender & ability */
     runCheck();
+#if !defined(PO_NO_GUI)
     PokeGraphics::load(gender(), false);
     PokeGraphics::loadIcon(num());
+#endif
 }
 
+#if !defined(PO_NO_GUI)
 QPixmap PokeTeam::picture()
 {
     return PokeGraphics::picture(gender(), shiny());
@@ -556,6 +567,7 @@ QIcon PokeTeam::icon()
 {
     return PokeGraphics::icon();
 }
+#endif
 
 int PokeTeam::stat(int statno) const
 {
@@ -677,6 +689,7 @@ QDomElement & PokeTeam::toXml(QDomElement &el) const
     return el;
 }
 
+#if !defined(PO_NO_GUI)
 bool TrainerTeam::saveToFile(const QString &path) const
 {
     QFile file(path);
@@ -752,6 +765,7 @@ void loadTTeamDialog(TrainerTeam &team, QObject *receiver, const char *slot)
     if (receiver)
         QObject::connect(f, SIGNAL(fileSelected(QString)), receiver, slot);
 }
+#endif
 
 void PokeTeam::loadFromXml(const QDomElement &poke, int version)
 {
@@ -828,6 +842,7 @@ int PokeTeam::gen() const
     return PokePersonal::gen();
 }
 
+#if !defined(PO_NO_GUI)
 bool TrainerTeam::loadFromFile(const QString &path)
 {
     QFile file(path);
@@ -886,6 +901,7 @@ bool TrainerTeam::loadFromFile(const QString &path)
     }
     return true;
 }
+#endif
 
 /******** Really ugly *********/
 bool TrainerTeam::importFromTxt(const QString &file1)

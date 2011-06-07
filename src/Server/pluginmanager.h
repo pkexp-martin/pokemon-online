@@ -2,7 +2,9 @@
 #define PLUGINMANAGER_H
 
 #include <QtCore>
+#if !defined(PO_NO_GUI)
 #include <QtGui>
+#endif
 class PlayerInterface;
 class ServerPlugin;
 class ChallengeInfo;
@@ -16,7 +18,9 @@ namespace cross {
 
 class PluginManager
 {
+#if !defined(PO_NO_GUI)
     friend class PluginManagerWidget;
+#endif
 public:
     PluginManager(Server *s);
     ~PluginManager();
@@ -43,6 +47,7 @@ private:
     void updateSavedList();
 };
 
+#if !defined(PO_NO_GUI)
 class PluginManagerWidget : public QWidget
 {
     Q_OBJECT
@@ -60,5 +65,6 @@ private:
 
     QListWidget *list;
 };
+#endif
 
 #endif // PLUGINMANAGER_H

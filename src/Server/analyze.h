@@ -2,7 +2,11 @@
 #define ANALYZE_H
 
 #include <QtCore>
+#if !defined(PO_NO_GUI)
 #include <QColor>
+#else
+#include "../Utilities/networkcolor.h"
+#endif
 #include "network.h"
 
 class TeamBattle;

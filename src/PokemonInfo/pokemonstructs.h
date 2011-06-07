@@ -1,7 +1,10 @@
 #ifndef POKEMONSTRUCTS_H
 #define POKEMONSTRUCTS_H
 
+#if !defined(PO_NO_GUI)
 #include <QtGui>
+#endif
+
 #include <QDataStream>
 #include "../Utilities/functions.h"
 
@@ -2126,6 +2129,7 @@ public:
     void setEV(int stat, quint8 EV);
 };
 
+#if !defined(PO_NO_GUI)
 /* Contains / loads the graphics of a pokemon */
 class PokeGraphics
 {
@@ -2159,8 +2163,12 @@ protected:
     void setUpToDate(bool uptodate);
     bool upToDate() const;
 };
+#endif
 
-class PokeTeam : virtual public PokeGeneral, virtual public PokePersonal, virtual public PokeGraphics
+class PokeTeam : virtual public PokeGeneral, virtual public PokePersonal
+#if !defined(PO_NO_GUI)
+		 , virtual public PokeGraphics
+#endif
 {
 public:
     PokeTeam();
@@ -2177,9 +2185,12 @@ public:
     void load();
     /* loads but without changing what's valid already */
     void loadQuietly();
+
+#if !defined(PO_NO_GUI)
     /* display automatically the right picture */
     QPixmap picture();
     QIcon icon();
+#endif
 
     void loadFromXml(const QDomElement &el, int version);
     QDomElement & toXml(QDomElement &dest) const;
@@ -2227,8 +2238,10 @@ public:
     const QString & trainerLose() const;
     const QString & trainerNick() const;
 
+#if !defined(PO_NO_GUI)
     bool loadFromFile(const QString &path);
     bool saveToFile(const QString &path) const;
+#endif
     bool importFromTxt(const QString &path);
     QString exportToTxt() const;
 };

@@ -179,6 +179,7 @@ ServerPlugin * PluginManager::plugin(const QString &name) const
     return NULL;
 }
 
+#if !defined(PO_NO_GUI)
 PluginManagerWidget::PluginManagerWidget(PluginManager &pl)
     : pl(pl)
 {
@@ -240,3 +241,4 @@ void PluginManagerWidget::addPlugin(const QString &filename)
 
     emit pluginListChanged();
 }
+#endif

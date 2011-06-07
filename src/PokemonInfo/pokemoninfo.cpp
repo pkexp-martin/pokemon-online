@@ -520,6 +520,7 @@ Pokemon::uniqueId PokemonInfo::NonAestheticForme(Pokemon::uniqueId id)
     return IsAesthetic(id) ? OriginalForme(id) : id;
 }
 
+#if !defined(PO_NO_GUI)
 QPixmap PokemonInfo::Picture(const Pokemon::uniqueId &pokeid, int gen, int gender, bool shiney, bool back)
 {
     QString archive;
@@ -651,6 +652,7 @@ QByteArray PokemonInfo::Cry(const Pokemon::uniqueId &pokeid)
 
     return data;
 }
+#endif
 
 QSet<int> PokemonInfo::Moves(const Pokemon::uniqueId &pokeid, int gen)
 {
@@ -1628,6 +1630,7 @@ int ItemInfo::BerryType(int itemnum)
     return m_BerryTypes[itemnum-8000];
 }
 
+#if !defined(PO_NO_GUI)
 QPixmap ItemInfo::Icon(int itemnum)
 {
     QPixmap ret;
@@ -1680,6 +1683,7 @@ QPixmap ItemInfo::HeldItem()
     ret.loadFromData(data,"png");
     return ret;
 }
+#endif
 
 QString ItemInfo::Name(int itemnum)
 {

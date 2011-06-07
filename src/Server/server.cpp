@@ -4,7 +4,6 @@
 #include "../PokemonInfo/pokemoninfo.h"
 #include "../PokemonInfo/networkstructs.h"
 #include "../PokemonInfo/movesetchecker.h"
-#include "../Utilities/otherwidgets.h"
 #include "server.h"
 #include "player.h"
 #include "challenge.h"
@@ -14,15 +13,18 @@
 #include "abilities.h"
 #include "security.h"
 #include "antidos.h"
-#include "serverconfig.h"
 #include "scriptengine.h"
 #include "tiermachine.h"
 #include "tier.h"
-#include "battlingoptions.h"
 #include "sql.h"
-#include "sqlconfig.h"
 #include "pluginmanager.h"
 #include "analyze.h"
+#if !defined(PO_NO_GUI)
+#include "../Utilities/otherwidgets.h"
+#include "serverconfig.h"
+#include "battlingoptions.h"
+#include "sqlconfig.h"
+#endif
 
 Server *Server::serverIns = NULL;
 

@@ -2,7 +2,9 @@
 #define SCRIPTENGINE_H
 
 #include <QtCore>
+#if !defined(PO_NO_GUI)
 #include <QTextEdit>
+#endif
 
 #include <QtScript>
 
@@ -353,6 +355,7 @@ private:
     bool makeSEvent(const QString &event, const T& param, const T2 &param2, const T3 &param3);
 };
 
+#if !defined(PO_NO_GUI)
 class ScriptWindow : public QWidget
 {
     Q_OBJECT
@@ -365,6 +368,7 @@ public slots:
 private:
     QTextEdit *myedit;
 };
+#endif
 
 template<class T>
 void ScriptEngine::makeEvent(const QString &event, const T &param)

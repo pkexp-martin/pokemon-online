@@ -3,6 +3,10 @@
 
 #include "pokemonstructs.h"
 
+#if defined(PO_NO_GUI)
+#include "../Utilities/networkcolor.h"
+#endif
+
 /* Only the infos needed by the server */
 class TeamInfo
 {

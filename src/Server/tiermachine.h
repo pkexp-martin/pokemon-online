@@ -1,7 +1,9 @@
 #ifndef TIERMACHINE_H
 #define TIERMACHINE_H
 
+#if !defined(PO_NO_GUI)
 #include <QtGui>
+#endif
 #include "../Utilities/functions.h"
 #include "tiertree.h"
 
